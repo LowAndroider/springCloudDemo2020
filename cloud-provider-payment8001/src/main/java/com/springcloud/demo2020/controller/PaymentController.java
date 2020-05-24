@@ -5,16 +5,23 @@ import com.springcloud.demo2020.entity.Payment;
 import com.springcloud.demo2020.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Djh
  */
 @Slf4j
 @RestController
-@RequestMapping("/payment")
 @RequiredArgsConstructor
+@RequestMapping("/payment")
 public class PaymentController {
+
+    @Value("${server.port}")
+    private String serverPort;
 
     private final PaymentService paymentService;
 
@@ -36,5 +43,16 @@ public class PaymentController {
             log.info("*****查询结果为: {}", payment);
             return new CommonResult<>(200, "查询成功", payment);
         }
+    }
+
+    @GetMapping("/list")
+    public CommonResult<List<Payment>> getPaymentList() {
+        List<Payment> paymentList = paymentService.list();
+        return new CommonResult<>(204, "查询成功", paymentList);
+    }
+
+    @GetMapping("/zk")
+    public String paymentZK() {
+        return "springCloud with zookeeper: " + serverPort + "\t" + UUID.randomUUID().toString();
     }
 }

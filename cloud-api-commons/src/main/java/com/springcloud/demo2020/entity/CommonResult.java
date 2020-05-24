@@ -1,6 +1,5 @@
 package com.springcloud.demo2020.entity;
 
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

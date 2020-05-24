@@ -9,6 +9,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
@@ -25,11 +26,11 @@ import java.util.Map;
 @DependsOn("springContextHolder")
 public class SystemInit implements ApplicationRunner {
 
-    private Logger logger = LoggerFactory.getLogger(SystemInit.class);
+    private final Logger logger = LoggerFactory.getLogger(SystemInit.class);
 
     private DataSource dataSource;
 
-    @Autowired
+    @Resource
     private ResourceLoader resourceLoader;
 
     /**
