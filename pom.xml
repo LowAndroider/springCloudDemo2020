@@ -13,6 +13,8 @@
         <module>cloud-provider-payment8001</module>
         <module>cloud-consumer-order80</module>
         <module>cloud-api-commons</module>
+        <module>cloud-provider-consul-payment8003</module>
+        <module>cloud-consumer-consul-order81</module>
     </modules>
     <packaging>pom</packaging>
 

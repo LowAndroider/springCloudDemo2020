@@ -8,6 +8,12 @@
 - cloud-consumer-order80  
     接口消费者  
     注册中心为zookeeper
+    
+- cloud-consumer-consul-order81  
+    接口消费者  
+    注册中心为consul  
+    使用Ribbon  
+    使用OpenFeign
  
 - cloud-provider-payment8001  
     服务提供者  
