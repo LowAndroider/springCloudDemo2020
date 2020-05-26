@@ -38,18 +38,11 @@ public interface OrderClientService {
             return new OrderClientService() {
                 @Override
                 public CommonResult<Boolean> create(Payment payment) {
-
-                    log.debug(throwable.getClass().getName());
-                    log.debug(throwable.toString());
-
                     return new CommonResult<>(444, "请稍后重试", false);
                 }
 
                 @Override
                 public CommonResult<Payment> getPaymentById(Long id) {
-                    log.warn(throwable.getClass().getName());
-                    log.warn(throwable.toString());
-
                     Payment payment = new Payment();
                     payment.setId(id);
                     return new CommonResult<>(444, "请稍后重试", payment);
@@ -57,9 +50,6 @@ public interface OrderClientService {
 
                 @Override
                 public CommonResult<List<Payment>> getPaymentList() {
-                    log.debug(throwable.getClass().getName());
-                    log.debug(throwable.toString());
-
                     return new CommonResult<>(444, "请稍后重试", null);
                 }
             };

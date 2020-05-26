@@ -1,5 +1,7 @@
 package com.springcloud.demo2020.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import com.springcloud.demo2020.entity.CommonResult;
 import com.springcloud.demo2020.entity.Payment;
 import com.springcloud.demo2020.service.PaymentService;
@@ -34,6 +36,7 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
+    @HystrixCommand(fallbackMethod = "processHystrix")
     public CommonResult<Payment> getPaymentById(@PathVariable Long id) {
         Payment payment = paymentService.getById(id);
         if(payment == null) {
@@ -43,6 +46,10 @@ public class PaymentController {
             log.info("*****查询结果为: {}", payment);
             return new CommonResult<>(200, "查询成功", payment);
         }
+    }
+
+    public CommonResult<Object> processHystrix() {
+        return new CommonResult<>(500, "请求失败");
     }
 
     @GetMapping("/list")
