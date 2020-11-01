@@ -1,6 +1,6 @@
 package com.springcloud.demo2020.controller;
 
-import com.springcloud.demo2020.entity.CommonResult;
+import com.springcloud.demo2020.entity.Result;
 import com.springcloud.demo2020.entity.Payment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,29 +33,29 @@ public class OrderController {
     private final RestTemplate restTemplate;
 
     @PostMapping("/")
-    public CommonResult<Boolean> create(@RequestBody Payment payment) {
+    public Result<Boolean> create(@RequestBody Payment payment) {
         if (type) {
-            return restTemplate.postForObject(INVOKE_URL + "payment/", payment, CommonResult.class);
+            return restTemplate.postForObject(INVOKE_URL + "payment/", payment, Result.class);
         } else {
-            return restTemplate.postForObject(PAYMENT_URL + "payment/", payment, CommonResult.class);
+            return restTemplate.postForObject(PAYMENT_URL + "payment/", payment, Result.class);
         }
     }
 
     @GetMapping("/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable Long id) {
+    public Result<Payment> getPaymentById(@PathVariable Long id) {
         if (type) {
-            return restTemplate.getForObject(INVOKE_URL + "payment/" + id, CommonResult.class);
+            return restTemplate.getForObject(INVOKE_URL + "payment/" + id, Result.class);
         } else {
-            return restTemplate.getForObject(PAYMENT_URL + "payment/" + id, CommonResult.class);
+            return restTemplate.getForObject(PAYMENT_URL + "payment/" + id, Result.class);
         }
     }
 
     @GetMapping("/list")
-    public CommonResult<List<Payment>> getPaymentList() {
+    public Result<List<Payment>> getPaymentList() {
         if (type) {
-            return restTemplate.getForObject(INVOKE_URL + "payment/list", CommonResult.class);
+            return restTemplate.getForObject(INVOKE_URL + "payment/list", Result.class);
         } else {
-            return restTemplate.getForObject(PAYMENT_URL + "payment/list", CommonResult.class);
+            return restTemplate.getForObject(PAYMENT_URL + "payment/list", Result.class);
         }
     }
 }

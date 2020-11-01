@@ -15,7 +15,10 @@
         <module>cloud-api-commons</module>
         <module>cloud-provider-consul-payment8003</module>
         <module>cloud-consumer-consul-order81</module>
+        <module>code-generator</module>
+        <module>base-service</module>
     </modules>
+
     <packaging>pom</packaging>
 
     <properties>
@@ -29,6 +32,8 @@
         <lombok.version>1.18.12</lombok.version>
         <mysql.version>8.0.20</mysql.version>
         <druid.version>1.1.16</druid.version>
+        <fastjson.version>1.2.58</fastjson.version>
+        <logback.version>1.2.3</logback.version>
         <mybatis-plus-spring.version>3.3.1</mybatis-plus-spring.version>
     </properties>
 
@@ -77,6 +82,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus-spring.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
@@ -84,9 +95,15 @@
             </dependency>
 
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <dependency>

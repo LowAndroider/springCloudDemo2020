@@ -1,7 +1,7 @@
 package com.springcloud.demo2020.service;
 
 import com.springcloud.demo2020.config.FeignConfiguration;
-import com.springcloud.demo2020.entity.CommonResult;
+import com.springcloud.demo2020.entity.Result;
 import com.springcloud.demo2020.entity.Payment;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +21,13 @@ import java.util.List;
 public interface OrderClientService {
 
     @PostMapping("/")
-    CommonResult<Boolean> create(@RequestBody Payment payment);
+    Result<Boolean> create(@RequestBody Payment payment);
 
     @GetMapping("/{id}")
-    CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
+    Result<Payment> getPaymentById(@PathVariable("id") Long id);
 
     @GetMapping("/list")
-    CommonResult<List<Payment>> getPaymentList();
+    Result<List<Payment>> getPaymentList();
 
     @Slf4j
     @Component
@@ -37,20 +37,20 @@ public interface OrderClientService {
 
             return new OrderClientService() {
                 @Override
-                public CommonResult<Boolean> create(Payment payment) {
-                    return new CommonResult<>(444, "请稍后重试", false);
+                public Result<Boolean> create(Payment payment) {
+                    return new Result<>(444, "请稍后重试", false);
                 }
 
                 @Override
-                public CommonResult<Payment> getPaymentById(Long id) {
+                public Result<Payment> getPaymentById(Long id) {
                     Payment payment = new Payment();
                     payment.setId(id);
-                    return new CommonResult<>(444, "请稍后重试", payment);
+                    return new Result<>(444, "请稍后重试", payment);
                 }
 
                 @Override
-                public CommonResult<List<Payment>> getPaymentList() {
-                    return new CommonResult<>(444, "请稍后重试", null);
+                public Result<List<Payment>> getPaymentList() {
+                    return new Result<>(444, "请稍后重试", null);
                 }
             };
         }
