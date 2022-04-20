@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * @author Djh
  */
-public interface PaymentDao extends BaseMapper<Payment> {
+public interface PaymentMapper extends BaseMapper<Payment> {
 
 }
