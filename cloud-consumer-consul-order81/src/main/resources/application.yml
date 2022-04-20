@@ -1,0 +1,29 @@
+server:
+  port: 81
+
+http:
+  isInvoke: true
+
+spring:
+  application:
+    name: cloud-consumer-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+
+payment:
+  provider:
+    name: cloud-payment-service
+
+ribbon:
+  # 读取资源超时时间
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+feign:
+  hystrix:
+    enabled: true
+

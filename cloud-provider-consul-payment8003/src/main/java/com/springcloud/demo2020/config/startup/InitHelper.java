@@ -25,7 +25,7 @@ public class InitHelper {
 
     private static final String VERSION_TABLE_CREATE_INIT = "" +
             "CREATE TABLE IF NOT EXISTS data_version (" +
-            "version VARCHAR(32) PRIMARY KEY " +
+            "version VARCHAR(32)" +
             ");";
 
     private static final String VERSION_INIT = "INSERT INTO data_version SELECT '" + DEFAULT_VERSION + "' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM data_version);";

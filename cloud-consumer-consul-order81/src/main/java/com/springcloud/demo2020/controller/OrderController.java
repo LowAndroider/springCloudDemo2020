@@ -2,6 +2,7 @@ package com.springcloud.demo2020.controller;
 
 import com.springcloud.demo2020.entity.Result;
 import com.springcloud.demo2020.entity.Payment;
+import com.springcloud.demo2020.service.OrderClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,8 @@ public class OrderController {
 
     private final RestTemplate restTemplate;
 
+    private final OrderClientService orderClientService;
+
     @PostMapping("/")
     public Result<Boolean> create(@RequestBody Payment payment) {
         if (type) {
@@ -43,11 +46,7 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public Result<Payment> getPaymentById(@PathVariable Long id) {
-        if (type) {
-            return restTemplate.getForObject(INVOKE_URL + "payment/" + id, Result.class);
-        } else {
-            return restTemplate.getForObject(PAYMENT_URL + "payment/" + id, Result.class);
-        }
+        return orderClientService.getPaymentById(id);
     }
 
     @GetMapping("/list")
